@@ -85,10 +85,19 @@
 #include <config_distro_bootcmd.h>
 
 #define ENV_BOOTMENU_ENTRIES \
+	"boot_the_nth_bootable="                                         \
+		"pn_counter=X; "                                         \
+		"part list ${devtype} ${devnum} -bootable blist; "       \
+		"for distro_bootpart in ${blist}; do "                   \
+			"if test ${pn_selector} = ${pn_counter} ; then " \
+				"run scan_dev_for_boot; "                \
+			"fi;  "                                          \
+			"pn_counter=${pn_counter}X;  "                   \
+		"done;\0"                                                \
 	"bootcmd=setenv stdin serial,pwr_key_stdin; bootmenu 15\0" \
 	"bootmenu_0=Search for extlinux.conf on all partitions=run scan_dev_for_boot_part\0" \
-	"bootmenu_1=Boot OS1=sysboot mmc 0:8 any ${scriptaddr} /boot/extlinux/extlinux.conf\0" \
-	"bootmenu_2=Boot OS2=sysboot mmc 0:9 any ${scriptaddr} /boot/extlinux/extlinux.conf\0"
+	"bootmenu_1=Boot OS1=pn_selector=X;  run boot_the_nth_bootable\0" \
+	"bootmenu_2=Boot OS2=pn_selector=XX; run boot_the_nth_bootable\0"
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	ENV_MEM_LAYOUT_SETTINGS \
