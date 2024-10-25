@@ -754,14 +754,19 @@ static int rockchip_eink_display_probe(struct udevice *dev)
 	}
 
 	if (priv->ebc_pwr_dev) {
-		struct rk_ebc_pwr_ops *pwr_ops;
 
-		pwr_ops = ebc_pwr_get_ops(priv->ebc_pwr_dev);
-		ret = pwr_ops->vcom_set(priv->ebc_pwr_dev, priv->vcom);
-		if (ret) {
-			printf("%s, vcom_set failed\n", __func__);
-			return -EIO;
-		}
+		/* struct rk_ebc_pwr_ops *pwr_ops; */
+
+		/* pwr_ops = ebc_pwr_get_ops(priv->ebc_pwr_dev); */
+		// 2024.10.25: We disable setting vcom in uboot for the second batch of
+		// PineNotes to make sure the vcom value flashed in the factory stays
+		// in the chip.
+
+		/* ret = pwr_ops->vcom_set(priv->ebc_pwr_dev, priv->vcom); */
+		/* if (ret) { */
+		/* 	printf("%s, vcom_set failed\n", __func__); */
+		/* 	return -EIO; */
+		/* } */
 	}
 
 	// read lut to ram, and get lut ops
