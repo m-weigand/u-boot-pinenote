@@ -754,6 +754,7 @@ static int rockchip_eink_display_probe(struct udevice *dev)
 	}
 
 	if (priv->ebc_pwr_dev) {
+		printf("VCOM will NOT be set by u-boot!\n");
 
 		/* struct rk_ebc_pwr_ops *pwr_ops; */
 
