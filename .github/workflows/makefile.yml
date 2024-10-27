@@ -30,7 +30,7 @@ jobs:
           ./make.sh
           ./make.sh trust
       - name: Upload files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: uboot-files
           path: |
@@ -71,7 +71,7 @@ jobs:
             sha256sum idblock_1560mhz.bin > ../sha256_idblock_1560mhz.bin.txt
 
       - name: Upload files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: uboot-files-cyttsp5_ram1560mhz
           path: |
@@ -99,7 +99,7 @@ jobs:
           git checkout b6354b9
           tools/boot_merger RKBOOT/RK3566MINIALL.ini
       - name: Upload files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: rk356x_spl_loader_v1.12.112.bin
           path: |
@@ -115,9 +115,9 @@ jobs:
       - generate_spl_boot_file
     steps:
       - name: Clone workflow repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Download image artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: artifacts/
       - name: debug
