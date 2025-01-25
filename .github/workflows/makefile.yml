@@ -10,7 +10,7 @@ on:
 
 jobs:
   compile_uboot:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: compile uboot for the PineNote
     steps:
       - name: Prepare environment
