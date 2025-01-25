@@ -39,7 +39,7 @@ jobs:
             u-boot-pinenote/idblock.bin
 
   compile_uboot_cyttsp5_ram_1560mhz:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: compile uboot for the PineNote, touch enabled, with 1560 MHz RAM blob
     steps:
       - name: Prepare environment
